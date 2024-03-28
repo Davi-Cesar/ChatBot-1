@@ -4,7 +4,6 @@ import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Controller;
 
-
 @Controller
 public class ChatController {
 
@@ -12,5 +11,14 @@ public class ChatController {
     @SendTo("/canal")
     public Mensagem sendMessage(Mensagem mensagem) {
         return mensagem;
+    }
+
+    @MessageMapping("/responderMensagem")
+    @SendTo("/canal")
+    public Mensagem responseMessage(Mensagem mensagem) {
+
+        System.out.println("Mensagem de resposta recebida do cliente: " + mensagem);
+        return mensagem;
+
     }
 }
